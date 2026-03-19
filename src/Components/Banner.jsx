@@ -3,7 +3,7 @@ import React from 'react';
  
 
 
-import banerimg from '../../Mission-Restart-A3/assets/hero.png'
+import banerimg from '../assets/hero.png'
 
 const Banner = () => {
   return (
