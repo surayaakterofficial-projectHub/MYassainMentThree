@@ -1,8 +1,5 @@
 import React from 'react'; 
 
- 
-
-
 import banerimg from '../assets/hero.png'
 
 const Banner = () => {

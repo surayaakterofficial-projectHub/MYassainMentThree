@@ -10,6 +10,11 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 
 const Install = () => {
+
+const[installsort,Setinstallsort]=useState('')
+
+
+
   const [apps, setApps] = useState([]);
 
   useEffect(() => {
@@ -24,6 +29,8 @@ const Install = () => {
 
   if (apps.length === 0) {
     return (
+
+    
       <div className="text-center mt-20">
         <Toaster position="top-right" />
         <h1 className="text-2xl font-bold mb-4">No Installed Apps</h1>
@@ -32,11 +39,39 @@ const Install = () => {
     );
   }
 
+
+const handleSort=(type)=>{
+Setinstallsort(type)
+
+
+if(type==='High-Low'){
+  const sortedbyDawnload=[...apps].sort((a,b)=>b.downloads-a.downloads);
+  setApps(sortedbyDawnload)
+}
+if(type==='Low'){
+
+  const sorted=[...apps].sort((a,b)=>a.downloads-b.downloads)
+  setApps(sorted)
+}
+}
   return (
 
     <>
     
     <Navbar></Navbar>
+
+   {/*  MysortItem */}
+<div className="flex justify-end mx-auto w-9/12">
+  <div className="dropdown">
+    <div tabIndex={0} role="button" className="btn m-1 bg-amber-900 text-blue-100">Sort by: {installsort?installsort:''}</div>
+    <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box w-52 p-2 shadow-sm">
+      <li><a onClick={()=>handleSort('High-Low')}>High-Low</a></li>
+      <li><a onClick={()=>handleSort('Low')}>Low-High</a></li>
+    </ul>
+  </div>
+</div>
+
+
     <div className="max-w-4xl mx-auto mt-10 p-6">
       <Toaster position="top-right" />
       <h1 className="text-3xl font-bold mb-6 text-center">Installed Apps</h1>
@@ -84,7 +119,8 @@ const Install = () => {
       <div className="mt-8 text-center">
         <Link to="/" className="btn btn-outline">Back back Home</Link>
       </div> 
-    </div><Footer></Footer></>
+    </div><Footer></Footer>
+    </>
   );
 };
 

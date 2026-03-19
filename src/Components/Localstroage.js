@@ -1,5 +1,4 @@
 
-
 const STORAGE_KEY = "installedApps";
 
 
